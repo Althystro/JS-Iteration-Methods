@@ -1,138 +1,93 @@
-const cities = [
-  {
-    id: 301,
-    name: "New York",
-    population: 8398748,
-    country: "United States",
-  },
-  {
-    id: 302,
-    name: "Paris",
-    population: 2140526,
-    country: "France",
-  },
-  {
-    id: 303,
-    name: "Tokyo",
-    population: 13960000,
-    country: "Japan",
-  },
-  {
-    id: 304,
-    name: "Sydney",
-    population: 5230330,
-    country: "Australia",
-  },
-  {
-    id: 305,
-    name: "Cairo",
-    population: 9121515,
-    country: "Egypt",
-  },
+// You are given an array representing the daily average temperatures (in Celsius) of a month.
+const temperatures = [
+  22, 25, 19, 24, 28, 30, 21, 20, 27, 29, 23, 26, 24, 22, 18, 19, 21, 28, 30,
+  36, 27, 26, 25, 22, 23, 19, 20, 28, 29, 27, 26,
 ];
 
-/**********
-  Question 1:
-  You have a function getCityPopulation(city) that:
-  - receives a city object
-  - returns the population of the city
-  Don't forget to uncomment the console.log
-  ===
-  ANSWER: 8398748
-  **********/
+/*****************************************************************
+Part 1: Temperature Analysis
 
-function getCityPopulation(city) {
-  return city.population;
-}
-console.log(getCityPopulation(cities[0]));
+Task 1) Create a new array containing temperatures greater than or equal to 25 degrees Celsius.
+       Output 1) [25, 28, 30, 27, 29, 26, 28, 30, 27, 26, 28, 29, 27, 26]
 
-/**********
-  Question 2:
-  You have a function that:
-  - receives a city object
-  - receives a population threshold (number)
-  - returns true if the city's population is greater than or equal to the threshold, otherwise returns false
-  ===
-  ANSWER: true
-  **********/
 
-function isPopulationAboveThreshold(city, threshold) {
-  return city.population >= threshold;
-}
-console.log(isPopulationAboveThreshold(cities[1], 2000000));
 
-/**********
-  Question 3:
-  addCity(cities, city):
-  - receives an array of city objects
-  - receives a new city object (with id, population, and country)
-  - adds the new city to the array
-  - returns the updated array
-  ===
-  ANSWER: 
-  [
-    {
-      "id": 301,
-      "name": "New York",
-      "population": 8398748,
-      "country": "United States"
-    },
-    {
-      "id": 302,
-      "name": "Paris",
-      "population": 2140526,
-      "country": "France"
-    },
-    {
-      "id": 303,
-      "name": "Tokyo",
-      "population": 13960000,
-      "country": "Japan"
-    },
-    {
-      "id": 304,
-      "name": "Sydney",
-      "population": 5230330,
-      "country": "Australia"
-    },
-    {
-      "id": 305,
-      "name": "Cairo",
-      "population": 9121515,
-      "country": "Egypt"
-    },
-    {
-      "id": 306,
-      "population": 1200000,
-      "country": "Canada"
-    }
-  ]
-  **********/
 
-function addCity(cities, city) {
-  cities.push(city);
-}
+Task 2) Create a new array containing temperatures less than 20 degrees Celsius.
+       Output 2) [19, 18, 19, 19]
 
-const newCity = {
-  id: 306,
-  population: 1200000,
-  country: "Canada",
-};
+******************************************************************/
+const tempGreaterOrEqual = [];
+const resultOfGreater = tempGreaterOrEqual.push(
+  temperatures.filter((temp) => temp >= 25)
+);
+console.log(tempGreaterOrEqual);
 
-addCity(cities, newCity);
-console.log(cities);
+const tempLessThan = [];
+const resultOfLessThan = tempLessThan.push(
+  temperatures.filter((temp) => temp < 20)
+);
+console.log(tempLessThan);
 
-/**********
-  Question 4:
-  countCitiesInCountry(cities, country):
-  - receives an array of city objects
-  - receives a country name (string)
-  - returns the number of cities in the specified country
-  ===
-  ANSWER: 1
-  **********/
+/*****************************************************************
+Part 2: Temperature Transformation
 
-function countCitiesInCountry(cities, country) {
-  return cities.filter((city) => city.country === country).length;
-}
-console.log(countCitiesInCountry(cities, "France"));
+Task 3) Convert the entire list of temperatures to Fahrenheit. Use the formula (Celsius * 9/5) + 32.
+       Output 3) [
+       71.6, 77, 66.2, 75.2,
+       82.4, 86, 69.8, 68,
+       80.6, 84.2, 73.4, 78.8,
+       75.2, 71.6, 64.4, 66.2, 
+       69.8, 82.4, 86, 80.6, 
+       78.8, 77, 71.6, 73.4, 
+       66.2, 68, 82.4, 84.2,
+       80.6, 78.8 
+]
+*/
+const celsiusToFehrenheit = temperatures.map((temp) => (temp * 9) / 5 + 32);
+
+console.log(celsiusToFehrenheit);
+
+/*
+Task 4) Create a new array that labels each temperature as either "Warm" for temperatures >=25, 
+"Mild" for temperatures between 20 and 24, and "Cool" for temperatures <20.
+       Output 4) [
+  'Mild', 'Warm', 'Cool', 'Mild',
+  'Warm', 'Warm', 'Mild', 'Mild',
+  'Warm', 'Warm', 'Mild', 'Warm',
+  'Mild', 'Mild', 'Cool', 'Cool',
+  'Mild', 'Warm', 'Warm', 'Warm',
+  'Warm', 'Warm', 'Mild', 'Mild',
+  'Cool', 'Mild', 'Warm', 'Warm',
+  'Warm', 'Warm'
+]
+
+******************************************************************/
+
+const convertedTemp = temperatures.map((temp) => {
+  if (temp >= 25) {
+    return "Warm";
+  } else if (temp >= 20 && temp < 25) {
+    return "Mild";
+  } else if (temp < 20) {
+    return "Cool";
+  }
+});
+console.log(convertedTemp);
+/*****************************************************************
+Part 3: Summary Statistics
+
+Task 5) Calculate and return the highest temperature of the month.
+       Output 5) 30
+
+Task 6) Calculate and return the lowest temperature of the month.
+       Output 6) 18
+
+******************************************************************/
+//const highestTemprature=temperatures.sort((temp)=>)
+const max = temperatures.sort((a, b) => a - b)[temperatures.length - 1];
+console.log(max);
+
+const min = temperatures.sort((a, b) => a - b)[0];
+console.log(min);
+// Note: Use appropriate JavaScript array iteration methods such as filter, map, reduce, etc., to achieve the desired output for each task.
