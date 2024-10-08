@@ -19,6 +19,15 @@ Task 2) Create a new array containing only the expense transactions.
 
 ******************************************************************/
 
+const incomeArray = transactions.filter((transaction) =>
+  transaction.includes("income")
+);
+console.log(incomeArray);
+const expenseArray = transactions.filter((transaction) =>
+  transaction.includes("expense")
+);
+console.log(expenseArray);
+
 /*****************************************************************
 Part 2: Financial Summary
 
@@ -29,6 +38,11 @@ Task 4) Calculate the total expenses and return it.
        Output 4) 800
 
 ******************************************************************/
+const totalIncome = incomeArray.reduce((sum, element) => sum + element[1], 0);
+console.log(totalIncome);
+
+const totalExpense = expenseArray.reduce((sum, element) => sum + element[1], 0);
+console.log(totalExpense);
 
 /*****************************************************************
 Part 3: Net Analysis
@@ -40,5 +54,11 @@ Task 6) Identify and create a new array with transactions (both incomes and expe
        Output 6) [["income", 1000], ["income", 1500], ["expense", 500], ["income", 700]]
 
 ******************************************************************/
+const netTotal = totalIncome - totalExpense;
+console.log(netTotal);
 
+const aboveOrEqual = transactions.filter(
+  (transaction) => transaction[1] >= 500
+);
+console.log(aboveOrEqual);
 // Note: Use appropriate JavaScript array iteration methods such as filter, reduce, etc., to achieve the desired output for each task.
