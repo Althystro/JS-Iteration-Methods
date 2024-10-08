@@ -75,7 +75,7 @@ Part 4: Extra not required 🌶️🌶️🌶️
  * - Accepts an array
  * - Logs every element of the array
  ************************************/
-
+//didnt understand the question
 /*************************************
  * toCelsius(temperatures)
  *
@@ -87,7 +87,14 @@ Part 4: Extra not required 🌶️🌶️🌶️
  * The conversion is:
  *   C = (F - 32) * (5/9)
  ************************************/
+const temperaturez = [
+  122, 125, 119, 124, 128, 130, 121, 120, 127, 129, 123, 126, 124, 122, 118,
+  119, 121, 128, 130, 136, 127, 126, 125, 122, 123, 119, 120, 128, 129, 127,
+  126,
+];
+const fahrenheitToCelsius = temperaturez.map((temp) => (temp - 32) * (5 / 9));
 
+console.log(fahrenheitToCelsius);
 /**************************************
  * hottestDays(temperatures, threshhold)
  *
@@ -96,6 +103,13 @@ Part 4: Extra not required 🌶️🌶️🌶️
  * - Returns an array of temperatures
  *   that exceed the threshhold
  ***************************************/
+
+const temperatures = [72, 85, 90, 60, 100, 78];
+const threshold = 80;
+const hottestDays = (temperatures, threshold) =>
+  temperatures.filter((temp) => temp > threshold);
+
+console.log(hottestDays(temperatures, threshold));
 
 /******************************************
  * logHottestDays(temperatures, threshhold)
